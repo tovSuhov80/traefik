@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:v2.5.3
+    restart: always
+    command:
+      - --api.insecure=true
+      - --entrypoints.http.address=:80
+      - --entrypoints.https.address=:443
+      - --providers.docker=true
+      - --providers.docker.network=web
+      - --providers.docker.exposedByDefault=false
+      - --providers.file.directory=/config
+      - --providers.file.watch=true
+      - --certificatesresolvers.acmeresolver.acme.email=${EMAIL}
+      - --certificatesresolvers.acmeresolver.acme.storage=acme.json
+      - --certificatesresolvers.acmeresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      - --certificatesresolvers.acmeresolver.acme.preferredchain="ISRG Root X1"
+      - --certificatesresolvers.acmeresolver.acme.keytype=RSA4096
+      - --certificatesresolvers.acmeresolver.acme.tlschallenge=true
+      - --log.level=DEBUG
+    networks:
+      - web
+    ports:
+      - 9080:8080
+      - 443:443
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config:/config
+      - ./certs:/certs
+
+networks:
+  web:
+    external: true
