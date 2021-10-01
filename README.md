@@ -1,7 +1,7 @@
 # traefik
 ```
 cd ~/apps
-git clone https://gogs.mt-pc.ru/danjudex/traefik.git
-cd traefik
-./up.sh
+git clone https://github.com/mediaten/traefik-v2
+cd traefik-v2
+make
 ```
