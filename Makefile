@@ -1,10 +1,13 @@
 # include .env
 # export
 
-all: cp-env cp-config re-create
+all: cp-env cp-config touch-acme re-create
 
 cp-env:
 	@test -f .env || cp .env.dist .env
+
+touch-acme:
+	@test -f ./letsencrypt/acme.json || touch ./letsencrypt/acme.json && chmod 0600 ./letsencrypt/acme.json
 
 cp-config:
 	@test -f ./config/traefik.yml || cp ./config/traefik.yml.dist ./config/traefik.yml

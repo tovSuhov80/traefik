@@ -15,10 +15,14 @@ services:
       - --providers.file.directory=/config
       - --providers.file.watch=true
       - --certificatesresolvers.acmeresolver.acme.email=${EMAIL}
-      - --certificatesresolvers.acmeresolver.acme.storage=acme.json
+      - --certificatesresolvers.acmeresolver.acme.storage=/letsencrypt/acme.json
       - --certificatesresolvers.acmeresolver.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --certificatesresolvers.acmeresolver.acme.tlschallenge=true
       - --log.level=DEBUG
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
     networks:
       - web
     ports:
@@ -29,6 +33,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config:/config
       - ./certs:/certs
+      - ./letsencrypt:/letsencrypt
 
 networks:
   web:
