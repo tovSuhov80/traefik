@@ -16,9 +16,7 @@ services:
       - --providers.file.watch=true
       - --certificatesresolvers.acmeresolver.acme.email=${EMAIL}
       - --certificatesresolvers.acmeresolver.acme.storage=acme.json
-      - --certificatesresolvers.acmeresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
-      - --certificatesresolvers.acmeresolver.acme.preferredchain="ISRG Root X1"
-      - --certificatesresolvers.acmeresolver.acme.keytype=RSA4096
+      - --certificatesresolvers.acmeresolver.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --certificatesresolvers.acmeresolver.acme.tlschallenge=true
       - --log.level=DEBUG
     networks:
