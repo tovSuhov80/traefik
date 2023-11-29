@@ -3,6 +3,8 @@
 
 all: cp-env cp-config touch-acme re-create
 
+install: cp-env cp-config touch-acme build up
+
 cp-env:
 	@test -f .env || cp .env.dist .env
 

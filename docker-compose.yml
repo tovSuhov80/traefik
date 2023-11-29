@@ -18,15 +18,15 @@ services:
       - --certificatesresolvers.acmeresolver.acme.storage=/letsencrypt/acme.json
       - --certificatesresolvers.acmeresolver.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --certificatesresolvers.acmeresolver.acme.tlschallenge=true
-      - --log.level=${EMAIL}
+      - --log.level=${LOG_LEVEL}
       - --log.filePath=/logs/traefik.log
       - --log.format=json
-      - --accesslog.filepath=/logs/access.log
-      - --accesslog.format=json
-      - --accesslog.fields.defaultmode=keep
-      - --accesslog.fields.names.ClientUsername=drop
-      - --accesslog.fields.headers.defaultmode=keep
-      - --accesslog.fields.headers.names.RequestHost=keep
+    #      - --accesslog.filepath=/logs/access.log
+    #      - --accesslog.format=json
+    #      - --accesslog.fields.defaultmode=keep
+    #      - --accesslog.fields.names.ClientUsername=drop
+    #      - --accesslog.fields.headers.defaultmode=keep
+    #      - --accesslog.fields.headers.names.RequestHost=keep
     logging:
       options:
         max-size: "10m"
