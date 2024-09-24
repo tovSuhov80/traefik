@@ -1,7 +1,7 @@
 # Traefik 2
 ```shell
-git clone https://github.com/mediaten/traefik-v2
-cd traefik-v2
+git clone https://github.com/tovSuhov80/traefik
+cd traefik
 ```
 
 Если вы впервые устанавливаете Traefik, то воспользуйтесь командой
